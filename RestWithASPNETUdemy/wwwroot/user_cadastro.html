@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Novo Usuário</title>
+    <link rel="import" href="imports.html" />
+    <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="styles/categories_styles.css">
+    <link rel="stylesheet" type="text/css" href="styles/categories_responsive.css">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="includes/header.js"></script>
+    <script src="includes/hamburguer.js"></script>
+    <script src="includes/footer.js"></script>
+    <script src="includes/newsLetterjs.js"></script>
+
+</head>
+<body>
+
+    <header>
+        <header_include>
+        </header_include>
+    </header>
+
+    <div class="hamburger_menu">
+        <hamburguer_include>
+        </hamburguer_include>
+    </div>
+
+    <!-- cadastro hidden usuário></!-->
+    <section id="newUser">
+
+        <form id="userForm" @submit="checkForm" class="form-horizontal" action='' method="POST">
+            <p v-if="errors.length">
+                <b>Por favor verifique os seguintes erros:</b>
+                <ul>
+                    <li v-for="error in errors">{{ error }}</li>
+                </ul>
+            </p>
+
+            <fieldset>
+                <div id="legend">
+                    <legend class="">Meu Cadastro</legend>
+                </div>
+
+                <div class="control-group">
+                    <!-- name  -->
+                    <label class="control-label" for="name">Nome</label>
+                    <div class="controls">
+                        <input v-model="name" type="text" id="name" name="name" placeholder="" class="input-xlarge">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <!-- sobrenome  -->
+                    <label class="control-label" for="lastName">Sobrenome</label>
+                    <div class="controls">
+                        <input v-model="lastName" type="text" id="lastName" name="lastName" placeholder="" class="input-xlarge">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <!-- E-mail -->
+                    <label class="control-label" for="email">E-mail</label>
+                    <div class="controls">
+                        <input v-model="email"type="text" id="email" name="email" placeholder="" class="input-xlarge">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <!-- Password-->
+                    <label class="control-label" for="password">Password</label>
+                    <div class="controls">
+                        <input v-model="password" type="password" id="password" name="password" placeholder="" class="input-xlarge">
+                        <p class="help-block">Sua senha precisa ter até 6 caractres.</p>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <!-- Password -->
+                    <label class="control-label" for="password_confirm">Confirmar senha</label>
+                    <div class="controls">
+                        <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge">
+                        <p class="help-block">Por favor confirme sua senha</p>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <!-- birthday -->
+                    <label class="control-label" for="bithday">Aniversário</label>
+                    <div class="controls">
+                        <input v-model="birthday"type="datetime" id="birthday" name="birthday" placeholder="">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <!-- Button -->
+                    <div class="controls">
+                        <button class="btn btn-success">Cadastrar</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </section>
+
+    <div class="newsletter">
+        <newsletter_include>
+        </newsletter_include>
+    </div>
+
+    <footer class="footer">
+        <footer_include>
+
+        </footer_include>
+    </footer>
+
+</body>
+</html>
+
+<script>
+    const app_user = new Vue({
+        el: '#userForm',
+        data: {
+            errors: [],
+            name: null,
+            lastName: null,
+            birthday: null,
+            password: null,
+            email: null,
+            message: null
+        },
+        methods: {
+            checkForm: function (e) {
+
+                e.preventDefault();
+
+                alert("preciso fazer a validação do form: " + this.name);
+
+                axios.post("http://localhost:61868/api/product/v1/", { name: this.name, password: this.password })
+                    .then(response => {
+                        this.message = response.data
+                        alert("usuário cadastrado com sucesso.");
+                    })
+
+               
+            }
+        }
+    })
+</script>
