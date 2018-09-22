@@ -15,7 +15,6 @@
 
 
 ******************************/
-
 jQuery(document).ready(function($)
 {
 	"use strict";
@@ -53,7 +52,7 @@ jQuery(document).ready(function($)
 	initFavorite();
 	initFixProductBorder();
 	initIsotopeFiltering();
-	initSlider();
+	//initSlider();
 
 	/* 
 
@@ -63,6 +62,7 @@ jQuery(document).ready(function($)
 
 	function setHeader()
 	{
+
 		if(window.innerWidth < 992)
 		{
 			if($(window).scrollTop() > 100)
@@ -397,42 +397,5 @@ jQuery(document).ready(function($)
 
 	*/
 
-    function initSlider()
-    {
-    	if($('.product_slider').length)
-    	{
-    		var slider1 = $('.product_slider');
-
-    		slider1.owlCarousel({
-    			loop:false,
-    			dots:false,
-    			nav:false,
-    			responsive:
-				{
-					0:{items:1},
-					480:{items:2},
-					768:{items:3},
-					991:{items:4},
-					1280:{items:5},
-					1440:{items:5}
-				}
-    		});
-
-    		if($('.product_slider_nav_left').length)
-    		{
-    			$('.product_slider_nav_left').on('click', function()
-    			{
-    				slider1.trigger('prev.owl.carousel');
-    			});
-    		}
-
-    		if($('.product_slider_nav_right').length)
-    		{
-    			$('.product_slider_nav_right').on('click', function()
-    			{
-    				slider1.trigger('next.owl.carousel');
-    			});
-    		}
-    	}
-    }
+    
 });

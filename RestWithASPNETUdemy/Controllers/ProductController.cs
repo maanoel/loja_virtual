@@ -31,7 +31,6 @@ namespace LojaVirtual.Controllers
         }
 
         [HttpGet]
-        [Authorize("Bearer")]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult listarProdutos() {
             return new ObjectResult(_productBusiness.FindAll());
