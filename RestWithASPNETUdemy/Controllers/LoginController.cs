@@ -24,6 +24,15 @@ namespace LojaVirtual.Controllers
             return _loginBusiness.FindByLogin(user);
         }
 
-      
+        [AllowAnonymous]
+        [HttpPost("new_user")]
+        public object NewUser([FromBody]UserVO user)
+        {
+            if (user == null) return BadRequest();
+
+           return _loginBusiness.CreateUser(user);
+        }
+
+
     }
 }

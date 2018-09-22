@@ -1,4 +1,4 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
 
 namespace LojaVirtual.Model
 {
@@ -6,5 +6,8 @@ namespace LojaVirtual.Model
     {
         public string Login { get; set; }
         public string AccessKey { get; set; }
+        public string Name { get;  set; }
+        public string LastName { get; set; }
+        public DateTime Birthday { get; set; }
     }
 }

@@ -13,7 +13,10 @@ namespace LojaVirtual.Data.Converters
             return new User
             {
                 Login = origin.Login,
-                AccessKey = origin.AccessKey
+                AccessKey = origin.AccessKey,
+                LastName = origin.LastName,
+                Name = origin.Name,
+                Birthday = origin.Birthday
             };
         }
 
@@ -23,7 +26,11 @@ namespace LojaVirtual.Data.Converters
             return new UserVO
             {
                 Login = origin.Login,
-                AccessKey = origin.AccessKey
+                AccessKey = origin.AccessKey,
+                Name= origin.Name,
+                LastName = origin.LastName,
+                Birthday = origin.Birthday
+
             };
         }
 

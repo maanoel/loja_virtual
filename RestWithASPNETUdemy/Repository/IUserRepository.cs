@@ -1,9 +1,9 @@
 ﻿using LojaVirtual.Model;
-using System.Collections.Generic;
+using LojaVirtual.Repository.Generic;
 
 namespace LojaVirtual.Business
 {
-    public interface IUserRepository
+    public interface IUserRepository :IRepository<User>
     {
         User FindByLogin(string login);
     }

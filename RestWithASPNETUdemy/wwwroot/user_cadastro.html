@@ -48,7 +48,7 @@
                     <!-- name  -->
                     <label class="control-label" for="name">Nome</label>
                     <div class="controls">
-                        <input v-model="name" type="text" id="name" name="name" placeholder="" class="input-xlarge">
+                        <input v-model="name" id="name" type="text"  name="name" placeholder="Digite seu nome" class="form-control">
                     </div>
                 </div>
 
@@ -56,7 +56,7 @@
                     <!-- sobrenome  -->
                     <label class="control-label" for="lastName">Sobrenome</label>
                     <div class="controls">
-                        <input v-model="lastName" type="text" id="lastName" name="lastName" placeholder="" class="input-xlarge">
+                        <input v-model="lastName" type="text" id="lastName" name="lastName" placeholder="Digite seu sobrenome" class="form-control">
                     </div>
                 </div>
 
@@ -64,7 +64,7 @@
                     <!-- E-mail -->
                     <label class="control-label" for="email">E-mail</label>
                     <div class="controls">
-                        <input v-model="email"type="text" id="email" name="email" placeholder="" class="input-xlarge">
+                        <input v-model="email"type="text" id="email" name="email" placeholder="Digite seu email" class="form-control">
                     </div>
                 </div>
 
@@ -72,7 +72,7 @@
                     <!-- Password-->
                     <label class="control-label" for="password">Password</label>
                     <div class="controls">
-                        <input v-model="password" type="password" id="password" name="password" placeholder="" class="input-xlarge">
+                        <input v-model="password" type="password" id="password" name="password" placeholder="Digite sua senha" class="form-control">
                         <p class="help-block">Sua senha precisa ter até 6 caractres.</p>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                     <!-- Password -->
                     <label class="control-label" for="password_confirm">Confirmar senha</label>
                     <div class="controls">
-                        <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge">
+                        <input type="password" id="password_confirm" name="password_confirm" placeholder="Confirme sua senha" class="form-control">
                         <p class="help-block">Por favor confirme sua senha</p>
                     </div>
                 </div>
@@ -90,7 +90,19 @@
                     <!-- birthday -->
                     <label class="control-label" for="bithday">Aniversário</label>
                     <div class="controls">
-                        <input v-model="birthday"type="datetime" id="birthday" name="birthday" placeholder="">
+                        <select id="birthday_day" name="days" class="form-control">
+                            <option>-</option>
+                        </select>
+                    </div>
+                    <div class="controls">
+                        <select id="birthday_mounth" name="days" class="form-control">
+                            <option>-</option>
+                        </select>
+                    </div>
+                    <div class="controls">
+                        <select id="birthday_year" name="days" class="form-control">
+                            <option>-</option>
+                        </select>
                     </div>
                 </div>
 
@@ -127,24 +139,32 @@
             lastName: null,
             birthday: null,
             password: null,
-            email: null,
-            message: null
+            email: null
         },
         methods: {
             checkForm: function (e) {
 
                 e.preventDefault();
 
-                alert("preciso fazer a validação do form: " + this.name);
+                formValidation();
 
-                axios.post("http://localhost:61868/api/product/v1/", { name: this.name, password: this.password })
-                    .then(response => {
-                        this.message = response.data
-                        alert("usuário cadastrado com sucesso.");
+                axios.post("http://localhost:61868/api/login/v1/new_user",
+                    {
+                        Login: this.email,
+                        AccessKey: this.password,
+                        Name: this.name,
+                        LastName: this.lastName,
+                        Bithday: new Date()
                     })
-
-               
+                    .then(response => {
+                        debugger;
+                        alert(response.data.accessToken);
+                    })
             }
         }
     })
+
+    function formValidation() {
+
+    }
 </script>

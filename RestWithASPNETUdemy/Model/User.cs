@@ -1,13 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using LojaVirtual.Model.Base;
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LojaVirtual.Model
 {
     [Table("users")]
-    public class User
+    public class User : BaseEntity
     {
-
-        public long? Id { get; set; }
         public string Login { get; set; }
         public string AccessKey { get; set; }
+        public string Name { get; set; }
+        public string LastName { get; set; }
+        public DateTime Birthday { get; set; }
     }
 }

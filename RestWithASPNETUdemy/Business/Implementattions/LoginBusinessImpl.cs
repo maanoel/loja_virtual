@@ -4,6 +4,7 @@ using System;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Principal;
+using LojaVirtual.Data.Converters;
 
 namespace LojaVirtual.Business.Implementations
 {
@@ -13,13 +14,23 @@ namespace LojaVirtual.Business.Implementations
         private IUserRepository _repository;
         private SigningConfigurations _signingConfigurations;
         private TokenConfiguration _tokenConfigurations;
+        private readonly UserConverter _converter;
 
 
         public LoginBusinessImpl(IUserRepository repository, SigningConfigurations signingConfigurations, TokenConfiguration tokenConfiguration)
         {
             _repository = repository;
             _signingConfigurations = signingConfigurations;
-            _tokenConfigurations = tokenConfiguration; 
+            _tokenConfigurations = tokenConfiguration;
+            _converter = new UserConverter();
+        }
+
+        public object CreateUser(UserVO user) {
+
+            var userEntity = _converter.Parse(user);
+            userEntity = _repository.Create(userEntity);
+
+            return FindByLogin(_converter.Parse(userEntity));
         }
 
         public object FindByLogin(UserVO user)
