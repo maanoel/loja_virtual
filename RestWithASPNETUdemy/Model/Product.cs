@@ -14,6 +14,7 @@ namespace LojaVirtual.Model
         public string Cor { get; set; }
         public string Medida { get; set; }
         public int Quantidade { get; set; }
+        public byte[] Image { get; set; }
 
     }
 }

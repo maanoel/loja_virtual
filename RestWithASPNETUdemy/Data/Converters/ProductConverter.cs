@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using LojaVirtual.Data.Converter;
 using LojaVirtual.Data.VO;
@@ -21,7 +22,8 @@ namespace LojaVirtual.Data.Converters
                 Medida = origin.Medida,
                 Peso = origin.Peso,
                 Quantidade = origin.Quantidade,
-                Valor = origin.Valor
+                Valor = origin.Valor,
+                Image = Convert.FromBase64String(origin.ImageBas64)
             };
 
         }
@@ -39,7 +41,8 @@ namespace LojaVirtual.Data.Converters
                 Medida = origin.Medida,
                 Peso = origin.Peso,
                 Quantidade = origin.Quantidade,
-                Valor = origin.Valor
+                Valor = origin.Valor,
+                ImageBas64 = Convert.ToBase64String(origin.Image)
             };
 
         }

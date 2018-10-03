@@ -13,6 +13,7 @@ namespace LojaVirtual.Data.VO
         public string Categoria { get; set; }
         public string Medida { get; set; }
         public int Quantidade { get; set; }
+        public string ImageBas64 { get; set; }
 
         public List<HyperMediaLink> Links { get; set; } = new List<HyperMediaLink>();
 
