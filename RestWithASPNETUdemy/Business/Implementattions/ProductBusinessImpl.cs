@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using LojaVirtual.Data.Converters;
 using LojaVirtual.Data.VO;
-using LojaVirtual.Model;
 using LojaVirtual.Repository.Generic;
+using System.IO;
 
 namespace LojaVirtual.Business.Implementations
 {
@@ -24,7 +21,13 @@ namespace LojaVirtual.Business.Implementations
         {
             var productEntity = _converter.Parse(product);
             productEntity = _repository.Create(productEntity);
+            SaveFile(productEntity.Image, productEntity.Id);
+
             return _converter.Parse(productEntity);
+        }
+
+        public void SaveFile(byte[] bytes, long? fileId) {
+            File.WriteAllBytes(@"C:\loja\produtos_imagem\" + fileId + ".png", bytes);
         }
 
         public void Delete(long id)

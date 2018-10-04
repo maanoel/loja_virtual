@@ -14,6 +14,7 @@ namespace LojaVirtual.Data.VO
         public string Medida { get; set; }
         public int Quantidade { get; set; }
         public string ImageBas64 { get; set; }
+        public string ImageUrl { get; set; }
 
         public List<HyperMediaLink> Links { get; set; } = new List<HyperMediaLink>();
 
