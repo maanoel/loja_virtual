@@ -584,16 +584,16 @@
             methods: {
                 
                 getProducts: function () {
-                    axios.get("http://localhost:61868/api/Product/v1/")
+                    axios.get("http://localhost/lojavirtual/api/Product/v1/")
                         .then(function (response) {
                             appIndex.productsArr = response.data;
-                            appIndex.productsArr[0].image_path = "C:\\loja\\produtos_imagem\\" + appIndex.productsArr[0].id + ".png";
+                            appIndex.productsArr[0].image_path = "produtos_imagem\\" + appIndex.productsArr[0].id + ".png";
                             
                             setTimeout(appIndex.initSlider, 500);
                         })
 
                 },
-                initSlider : function () {
+                initSlider : function () {s
                     if ($('.product_slider').length) {
                         var slider1 = $('.product_slider');
 

@@ -25,6 +25,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using System.IO;
 using LojaVirtual.Repository.Implementations;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Http;
 
 namespace LojaVirtual
 {
@@ -176,6 +178,14 @@ namespace LojaVirtual
             loggerFactory.AddDebug();
 
             app.UseStaticFiles();
+            app.UseCookiePolicy(); ;
+            app.UseFileServer(new FileServerOptions
+            {
+                FileProvider = new PhysicalFileProvider(@"C:\loja\prosadutos_imagem"),
+                RequestPath = new PathString("/lojavirtual/produtos_imagem"),
+                EnableDirectoryBrowsing = true
+            });
+
             //Enable Swagger
             app.UseSwagger();
 
